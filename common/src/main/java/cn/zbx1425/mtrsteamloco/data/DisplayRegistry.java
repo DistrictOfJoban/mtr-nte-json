@@ -101,6 +101,16 @@ public class DisplayRegistry {
         }
     }
 
+    public static void remove(String trainId) {
+        DisplayContent dp = trainSinks.get(trainId);
+        if(dp != null) {
+            dp.close();
+        }
+        
+        trainSinks.remove(trainId);
+        trainSlots.remove(trainId);
+    }
+
     public static void handleCar(String trainId, TrainClient train, int ridingCar,
                                  double carX, double carY, double carZ, float yaw, float pitch,
                                  boolean doorLeftOpen, boolean doorRightOpen) {

@@ -10,6 +10,8 @@ Nemo's Transit Expansion, created by Zbx1425, includes some experimental extensi
 
 Initially published at the [Teacon 2022 mod development jam](https://teacon.cn), the mod was originally named MTRSteamLoco.
 
+*This is a fork of [Dooji's mtr-nte-json](https://github.com/dooji2/mtr-nte-json) that make some changes for Joban-specific use case, which in turn is a fork of [zbx1425's mtr-nte](https://github.com/zbx1425/mtr-nte) that adds back the Legacy JSON Display System on NTE 4*
+
 ## Setup
 
 1. Clone this repository
