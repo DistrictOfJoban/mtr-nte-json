@@ -182,7 +182,7 @@ public class VariableText {
         StationIndexMap result = new StationIndexMap();
         for (int i = 0; i < train.path.size(); i++) {
             PathData pathPiece = train.path.get(i);
-            if (pathPiece.dwellTime > 0) {
+            if (pathPiece.dwellTime > 0 && !pathPiece.rail.railType.equals(RailType.TURN_BACK)) {
                 int stopIndex = pathPiece.stopIndex - 1;
                 while (stopIndex > stopIndexOffset + currentRoute.platformIds.size() - 1) {
                     currentRouteSeq++;

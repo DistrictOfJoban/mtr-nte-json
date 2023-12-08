@@ -51,7 +51,7 @@ processResources {
 
 	filesMatching("fabric.mod.json") {
 		expand (
-			"version": project.version,
+			"version": project.version + "+joban",
 			"minecraft_version": rootProject.supports_minecraft_version,
 			"mtr_min_version": rootProject.mtr_min_version
 		)
