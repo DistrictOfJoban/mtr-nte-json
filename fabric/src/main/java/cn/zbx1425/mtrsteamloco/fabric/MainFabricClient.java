@@ -1,5 +1,6 @@
 package cn.zbx1425.mtrsteamloco.fabric;
 
+import cn.zbx1425.mtrsteamloco.ClientConfig;
 import cn.zbx1425.mtrsteamloco.Main;
 import cn.zbx1425.mtrsteamloco.MainClient;
 import cn.zbx1425.mtrsteamloco.gui.ConfigScreen;
@@ -68,7 +69,8 @@ public class MainFabricClient implements ClientModInitializer {
 										});
 										return 1;
 									}))
-			);
+			)
+		);
 
 #if MC_VERSION >= "11900"
 		});
