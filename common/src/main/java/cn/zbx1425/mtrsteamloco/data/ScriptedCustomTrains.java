@@ -42,12 +42,6 @@ public class ScriptedCustomTrains implements IResourcePackCreatorProperties, ICu
                         final boolean isJacobsBogie = getOrDefault(jsonObject, "is_jacobs_bogie", prevTrainProp.isJacobsBogie, JsonElement::getAsBoolean);
                         final float bogiePosition = getOrDefault(jsonObject, "bogie_position", prevTrainProp.bogiePosition, JsonElement::getAsFloat);
 
-                        // Must be explicitly enabled to have both display system in the same train
-                        final boolean isHybirdDisplay = getOrDefault(jsonObject, "hybird_display", false, JsonElement::getAsBoolean);
-                        if(!isHybirdDisplay) {
-                            DisplayRegistry.remove(trainId);
-                        }
-
                         ScriptHolder scriptContext = new ScriptHolder();
                         Map<ResourceLocation, String> scripts = new Object2ObjectArrayMap<>();
                         if (jsonObject.has("script_texts")) {

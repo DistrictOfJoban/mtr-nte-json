@@ -23,7 +23,6 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.world.phys.Vec3;
-import org.apache.commons.lang3.exception.ExceptionUtils;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -99,16 +98,6 @@ public class DisplayRegistry {
         for (DisplayContent content : trainSinks.values()) {
             content.drawImmediate(transformedNormal);
         }
-    }
-
-    public static void remove(String trainId) {
-        DisplayContent dp = trainSinks.get(trainId);
-        if(dp != null) {
-            dp.close();
-        }
-        
-        trainSinks.remove(trainId);
-        trainSlots.remove(trainId);
     }
 
     public static void handleCar(String trainId, TrainClient train, int ridingCar,
