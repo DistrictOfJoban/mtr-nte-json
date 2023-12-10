@@ -31,7 +31,7 @@ public class FontTexture implements Closeable {
 
     public double lastUseTime;
 
-    private static final int FONT_SIZE = 32;
+    private static final int FONT_SIZE = 64;
 
     public FontTexture(String text) throws IOException {
         Font font = FontTextureCache.FONT_SERIF.deriveFont(Font.PLAIN, FONT_SIZE);

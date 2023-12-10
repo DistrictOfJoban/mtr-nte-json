@@ -97,7 +97,7 @@ public class FontTextureCache {
 
         @Override
         public float measureWidth(VariableText input) {
-            Rectangle2D rect = font.deriveFont(0, 32).getStringBounds(input.getTargetString(context, train), FONT_CONTEXT);
+            Rectangle2D rect = font.deriveFont(0, 64).getStringBounds(input.getTargetString(context, train), FONT_CONTEXT);
             return (float)(rect.getWidth() / rect.getHeight());
         }
     }
