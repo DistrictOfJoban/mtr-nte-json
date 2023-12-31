@@ -69,8 +69,7 @@ public class MainFabricClient implements ClientModInitializer {
 										});
 										return 1;
 									}))
-			)
-		);
+			);
 
 #if MC_VERSION >= "11900"
 		});
