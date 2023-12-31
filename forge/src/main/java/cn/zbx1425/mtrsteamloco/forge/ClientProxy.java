@@ -92,7 +92,7 @@ public class ClientProxy {
                                         });
                                         return 1;
                                     }))
-            );
+            ));
         }
 #endif
     }
