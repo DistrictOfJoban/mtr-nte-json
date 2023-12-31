@@ -57,9 +57,9 @@ public class ClientProxy {
 #endif
             if (Minecraft.getInstance().options.renderDebug) {
                 event.getLeft().add(
-                        "[NTE] Calls: " + MainClient.profiler.drawCallCount
-                                + ", Batches: " + MainClient.profiler.batchCount
-                                + ", Faces: " + (MainClient.profiler.singleFaceCount + MainClient.profiler.instancedFaceCount)
+                        "[NTE] Calls: " + MainClient.drawContext.drawCallCount
+                                + ", Batches: " + MainClient.drawContext.batchCount
+                                + ", Faces: " + (MainClient.drawContext.singleFaceCount + MainClient.drawContext.instancedFaceCount)
                 );
             }
         }
@@ -79,7 +79,7 @@ public class ClientProxy {
                                     .executes(context -> {
                                         ClientConfig.hideRidingTrain = !ClientConfig.hideRidingTrain;
                                         return 1;
-                                    })
+                                    }))
                             .then(Commands.literal("stat")
                                     .executes(context -> {
                                         Minecraft.getInstance().tell(() -> {
