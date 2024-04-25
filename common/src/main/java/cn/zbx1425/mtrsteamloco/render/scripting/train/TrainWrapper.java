@@ -7,7 +7,9 @@ import mtr.MTRClient;
 import mtr.client.ClientData;
 import mtr.data.*;
 import mtr.path.PathData;
+import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
+import net.minecraft.world.entity.player.Player;
 
 import java.util.*;
 
@@ -209,6 +211,13 @@ public class TrainWrapper {
         return shouldRender && (MTRClient.isReplayMod() || isInDetailDistance);
     }
 
+    @SuppressWarnings("unused")
+    public boolean isClientPlayerRiding() {
+        Player player = Minecraft.getInstance().player;
+        return player != null && train.isPlayerRiding(player);
+    }
+
+    @SuppressWarnings("unused") public Train mtrTrain() { return train; }
     @SuppressWarnings("unused") public long id() { return train.id; }
     @SuppressWarnings("unused") public Siding siding() { return trainPlatforms.siding; }
     @SuppressWarnings("unused") public String trainTypeId() { return train.trainId; }

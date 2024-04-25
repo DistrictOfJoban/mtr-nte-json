@@ -16,17 +16,15 @@ public abstract class AbstractScriptContext {
     protected boolean disposed = false;
 
     public long lastExecuteDuration = 0;
-    public Map<String, String> debugInfo = new HashMap<>();
+    public Map<String, Object> debugInfo = new HashMap<>();
 
     public abstract void renderFunctionFinished();
 
     public abstract Object getWrapperObject();
 
-    public abstract String getContextTypeName();
-
     public abstract boolean isBearerAlive();
 
-    public void setDebugInfo(String key, String value) {
+    public void setDebugInfo(String key, Object value) {
         debugInfo.put(key, value);
     }
 
