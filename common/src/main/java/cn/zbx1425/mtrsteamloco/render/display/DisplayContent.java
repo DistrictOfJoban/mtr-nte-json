@@ -166,7 +166,7 @@ public class DisplayContent implements Closeable {
             RenderSystem.depthMask(false);
             immediateVertArray.bind();
             colorMaterialProp.attrState.setNormal(transformedNormal);
-            colorMaterialProp.attrState.apply(immediateVertArray);
+            colorMaterialProp.attrState.applyGlobal();
             immediateVertArray.draw();
             colorVertexConsumer.clear();
             MainClient.drawScheduler.shaderManager.cleanupShaderBatchState(colorMaterialProp, ShaderProp.DEFAULT);
@@ -180,7 +180,7 @@ public class DisplayContent implements Closeable {
             RenderSystem.depthMask(false);
             immediateVertArray.bind();
             textMaterialProp.attrState.setNormal(transformedNormal);
-            textMaterialProp.attrState.apply(immediateVertArray);
+            textMaterialProp.attrState.applyGlobal();
             immediateVertArray.draw();
             MainClient.drawScheduler.shaderManager.cleanupShaderBatchState(textMaterialProp, ShaderProp.DEFAULT);
             entry.getValue().close();
@@ -195,7 +195,7 @@ public class DisplayContent implements Closeable {
             RenderSystem.colorMask(false, false, false, false);
             immediateVertArray.bind();
             depthMaterialProp.attrState.setNormal(transformedNormal);
-            depthMaterialProp.attrState.apply(immediateVertArray);
+            depthMaterialProp.attrState.applyGlobal();
             immediateVertArray.draw();
             depthVertexConsumer.clear();
             MainClient.drawScheduler.shaderManager.cleanupShaderBatchState(depthMaterialProp, ShaderProp.DEFAULT);
