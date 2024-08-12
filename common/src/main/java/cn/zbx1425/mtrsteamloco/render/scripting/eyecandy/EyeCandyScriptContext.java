@@ -1,8 +1,8 @@
 package cn.zbx1425.mtrsteamloco.render.scripting.eyecandy;
 
-import cn.zbx1425.mtrsteamloco.Main;
 import cn.zbx1425.mtrsteamloco.block.BlockEyeCandy;
 import cn.zbx1425.mtrsteamloco.render.scripting.AbstractScriptContext;
+import cn.zbx1425.mtrsteamloco.render.scripting.util.DynamicModelHolder;
 import cn.zbx1425.sowcer.math.Matrices;
 import cn.zbx1425.sowcer.math.Matrix4f;
 import cn.zbx1425.sowcerext.model.ModelCluster;
@@ -37,12 +37,19 @@ public class EyeCandyScriptContext extends AbstractScriptContext {
         return entity;
     }
 
+    // Something more graceful?
+    public boolean disposeForReload = false;
+
     @Override
     public boolean isBearerAlive() {
-        return !entity.isRemoved();
+        return !disposeForReload && !entity.isRemoved();
     }
 
     public void drawModel(ModelCluster model, Matrices poseStack) {
+        scriptResultWriting.addModel(model, poseStack == null ? Matrix4f.IDENTITY : poseStack.last().copy());
+    }
+
+    public void drawModel(DynamicModelHolder model, Matrices poseStack) {
         scriptResultWriting.addModel(model, poseStack == null ? Matrix4f.IDENTITY : poseStack.last().copy());
     }
 

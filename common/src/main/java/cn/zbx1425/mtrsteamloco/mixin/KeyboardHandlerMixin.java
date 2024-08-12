@@ -2,8 +2,11 @@ package cn.zbx1425.mtrsteamloco.mixin;
 
 import cn.zbx1425.mtrsteamloco.ClientConfig;
 import cn.zbx1425.mtrsteamloco.CustomResources;
+import cn.zbx1425.mtrsteamloco.data.EyeCandyProperties;
+import cn.zbx1425.mtrsteamloco.data.EyeCandyRegistry;
 import cn.zbx1425.mtrsteamloco.gui.ErrorScreen;
 import cn.zbx1425.mtrsteamloco.render.integration.MtrModelRegistryUtil;
+import cn.zbx1425.mtrsteamloco.render.scripting.ScriptHolder;
 import cn.zbx1425.mtrsteamloco.render.scripting.train.ScriptedTrainRenderer;
 import cn.zbx1425.sowcer.util.GlStateTracker;
 import mtr.client.TrainClientRegistry;
@@ -18,6 +21,8 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+import java.util.Map;
+
 @Mixin(KeyboardHandler.class)
 public class KeyboardHandlerMixin {
 
@@ -30,6 +35,8 @@ public class KeyboardHandlerMixin {
                 GlStateTracker.capture();
                 MtrModelRegistryUtil.loadingErrorList.clear();
                 MtrModelRegistryUtil.resourceManager = minecraft.getResourceManager();
+                ScriptHolder.resetRunner();
+
                 for (TransportMode transportMode : TransportMode.values()) {
                     TrainClientRegistry.forEach(transportMode, (id, prop) -> {
                         if (prop.renderer instanceof ScriptedTrainRenderer) {
@@ -41,7 +48,19 @@ public class KeyboardHandlerMixin {
                         }
                     });
                 }
-                CustomResources.resetTrainComponents();
+                for (Map.Entry<String, EyeCandyProperties> entry : EyeCandyRegistry.elements.entrySet()) {
+                    if (entry.getValue().script != null) {
+                        try {
+                            entry.getValue().script.reload(minecraft.getResourceManager());
+                        } catch (Exception ex) {
+                            MtrModelRegistryUtil.recordLoadingError("Failed to reload eye-candy script: " + entry.getKey(), ex);
+                        }
+                    }
+                }
+
+                CustomResources.resetComponents();
+
+
                 GlStateTracker.restore();
                 if (!MtrModelRegistryUtil.loadingErrorList.isEmpty()) {
                     minecraft.execute(() -> {
