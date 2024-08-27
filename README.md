@@ -1,5 +1,5 @@
 # MTR-NTE
-
+**This fork is no longer maintained, see [LegacyDisplayHelper](https://github.com/DistrictOfJoban/NTE-LegacyDisplayHelper) for a JS implementation.**
 
 ![Feature Grid Image](https://www.zbx1425.cn/nautilus/mtr-nte/img/featgrid.jpg)
 
